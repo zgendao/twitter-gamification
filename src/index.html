@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body onload="init()">
+    <div id="description">
+      <h3>Authentication with twitter</h3>
+      <ol>
+        <li>Post a tweet containing yout Ethereum address</li>
+        <li>
+          Copy and paste the tweet id into the "Tweet Id" field [under Connect
+          your twitter to your address]
+        </li>
+        <li>Click on "Query ID"</li>
+        <li>Wait 6-10 minutes for the witnet request to finish</li>
+        <li>Click on "Likn ID"</li>
+      </ol>
+
+      <h3>Managing twitter games</h3>
+      <p>
+        Create: Creates a new twitter game monitoring the submited tweet id and
+        granting every liker the submited reward in Ether. [only one game/tweet
+        can exist]
+      </p>
+      <p>
+        Query likers: Creates a new witnet request to get the new likers for the
+        tweet. [It can take 6-10 minutes to finish.]
+      </p>
+      <p>
+        Refresh likers: Extracts the information from the witnet request and
+        saves it on chain. [This can be an expensive function.]
+      </p>
+      <p>
+        New likers: Returns the number of new likers waiting to be saved on
+        chain. [max 50]
+      </p>
+      <p>Set reward: Sets a new reward amount for each liker to receive.</p>
+      <p>
+        Get address: Returns the address of the twitter point counter linked to
+        the tweet. [If you want the game to function you need to send ETH to
+        this address]
+      </p>
+      <p>
+        Destroy: Destroys the twitter point counter contract and sends the
+        remaining funds to the owner
+      </p>
+
+      <h3>Getting rewards</h3>
+      <ol>
+        <li>
+          Link your Ethereum address to your twitter account. [You only have to
+          do this once.]
+        </li>
+        <li>Like a tweet that has a counter contract.</li>
+        <li>Wait for someone to query and save your like or do it yourself.</li>
+        <li>
+          Copy and paste the id of the tweet you liked and click on Get reward.
+        </li>
+      </ol>
+    </div>
+    <div class="form">
+      <h2 class="title">Connect your twitter to your address</h2>
+      <div class="inputs">
+        <div class="input-row">
+          <label for="tweet-id">Tweet Id</label>
+          <input id="tweet-id" placeholder="0" />
+        </div>
+      </div>
+      <div id="buttons">
+        <button id="query-id" onclick="queryId()">Query ID</button>
+        <button id="link" onclick="link()">Link ID</button>
+      </div>
+    </div>
+    <div class="form">
+      <h2 class="title">Manage your twitter game</h2>
+      <div class="inputs">
+        <div class="input-row">
+          <label for="tweet-id-for-contract">Tweet Id</label>
+          <input id="tweet-id-for-contract" placeholder="0" />
+        </div>
+        <div class="input-row">
+          <label for="reward-for-likes">Reward for likes</label>
+          <input id="reward-for-likes" placeholder="0" />
+        </div>
+        <label for="num-of-new-likes">Number of new likers:</label>
+        <p style="display: inline" id="num-of-new-likes">0</p>
+        <br />
+        <label for="counter-address">Counter address:</label>
+        <p style="display: inline" id="counter-address">0</p>
+      </div>
+      <div id="buttons">
+        <button id="create" onclick="create()">Create</button>
+        <button id="query-likers" onclick="queryLikers()">Query likers</button>
+        <button id="refresh-likers" onclick="refreshLikers()">
+          Refresh likers
+        </button>
+        <button id="new-likers" onclick="newLikers()">New likers</button>
+        <button id="set-reward" onclick="setReward()">Set reward</button>
+        <button id="display-address" onclick="displayCounterAddress()">
+          Get address
+        </button>
+        <button id="destroy" onclick="destroy()">Destroy</button>
+      </div>
+    </div>
+    <div class="form">
+      <h2 class="title">Get your reward from a twitter game</h2>
+      <div class="inputs">
+        <div class="input-row">
+          <label for="tweet-id-for-user">Tweet Id</label>
+          <input id="tweet-id-for-user" placeholder="0" />
+        </div>
+      </div>
+      <div id="buttons">
+        <button id="get-reward" onclick="getReward()">Get reward</button>
+      </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+  </body>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+  <script src="script.js"></script>
+</html>
