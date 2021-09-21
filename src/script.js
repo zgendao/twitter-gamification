@@ -56,7 +56,7 @@ const queryId = async () => {
 
 const link = async () => {
   try {
-    await twitterAuth.getTwitterID();
+    await twitterAuth.extractTwitterId();
   } catch (e) {
     alert(e);
   }
